@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <section class="home-stcker-section">
+      <div class="styled-banner" id="banner-content">
+        <div class="title-stcker-banner">
+          <span class="stcker-head-title"
+            >ESPORTS ENTERTAINMENT GROUP INVESTOR RELATIONS (<span
+              class="stcker-head-title-red"
+              >GMBL</span
+            >)</span
+          >
+        </div>
+        <div class="graph-card-stockticker" id="ndq-banner-quote">
+          <div class="region-sticker region-hero-featured">
+            <div id="block-stockquote">
+              <div class="stock-quote stock-quote__short">
+                <div class="quote-wrapper">
+                  <div class="ndq-quote-comp">NASDAQ: <span>GMBL</span></div>
+                  <div class="ndq-quote-exchange">
+                    <span class="ndq-quote-price"> </span>
+                    <span class="ndq-quote-change"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="display-flex vertical-center">
+              <div id="block-widgetstockchart" class="graph_outer">
+                <img
+                  src="https://api.nasdaqomx.wallst.com/api/chart?display=candlestick&symbol=GMBL&scale=linear&duration=1dy&frequency=15min&gridLine=h&bgColor=DE1F26&lineColor=ffffff&fillcolor=ffffff|61b510&width=275&height=180&bdr=2&amp;volume=0&amp;headerType=&amp;fontColor=ffffff"
+                />
+              </div>
+              <div
+                id="block-gbwestattributionforblocklayout"
+                class="styledlogograph"
+              >
+                <!-- <img
+                  src="/wp-content/uploads/2021/06/EEG_Logo-Stock_Ticker-WhiteSemiTransBkg.png"
+                  alt="logo"
+                /> -->
+                <p class="ticker-delay">Minimum 15 minutes delayed.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      const url =
+        "https://financialmodelingprep.com/api/v3/quote/GMBL?apikey=947660e2d19dd3597487ff7e948e0809";
+
+      const fetchData = async () => {
+        const response = await fetch(url, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        const data = await response.json();
+
+        return data;
+      };
+
+      fetchData().then((res) => {
+        console.log(res[0]);
+        const { price, change, changesPercentage } = res[0];
+        console.log(price, change, changesPercentage, 'STUFF')
+  
+        let rootDiv = document.getElementById("block-stockquote");
+
+        rootDiv.textContent += '$' + price + ' ' + change + ' (%' + changesPercentage + ')'
+
+      });
+    </script>
+  </body>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Quicksand", sans-serif;
+      font-size: 62.5%;
+      font-size: 10px;
+    }
+
+    /* Home section */
+    .home-stcker-section {
+      width: 100%;
+      background-image: url(https://banyandevs.com/wp-content/uploads/2021/05/sticker-background.png);
+      background-position: center top;
+      background-size: cover;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      padding: 140px 0;
+    }
+
+    .title-stcker-banner {
+      width: 60%;
+      color: #fff;
+      font-size: 35px !important;
+      font-weight: 400;
+      margin-right: 20px;
+      font-family: Verdana, Arial, Helvetica, sans-serif;
+      line-height: normal;
+    }
+
+    .graph-card-stockticker {
+      width: 30%;
+      max-width: 480px;
+    }
+
+    .vertical-center {
+      align-items: center;
+      justify-content: center;
+    }
+    .styled-banner {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: 100%;
+      padding-left: 30px;
+      padding-right: 30px;
+      justify-content: center;
+    }
+
+    .stcker-head-title {
+      letter-spacing: 0px;
+      color: #ffffff;
+      text-align: left;
+      word-break: break-word;
+      width: 500px;
+    }
+
+    .stcker-head-title-red {
+      letter-spacing: 0px;
+      color: #de1f26;
+    }
+
+    #ndq-banner-quote {
+      background: #de1f26;
+      padding: 20px;
+    }
+
+    .region-sticker {
+      font-family: Kimberley, Verdana, Arial, Helvetica, sans-serif;
+      /* display: flex;
+        justify-content: center;
+        flex-direction: row; */
+    }
+
+    #block-stockquote {
+      margin-bottom: 10px;
+    }
+
+    #banner-content {
+      color: #fff;
+      position: relative;
+    }
+
+    .stock-quote {
+      font-size: 26px;
+    }
+
+    .ndq-quote-exchange {
+      font-weight: 600;
+    }
+
+    .ndq-quote-change {
+      font-size: 20px;
+    }
+
+    .styledlogograph img {
+      max-width: 160px;
+      margin: 0px 0 0 0;
+    }
+
+    .block-gbwestattributionforblocklayout {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ndq-quote-comp {
+      margin-bottom: 20px;
+      min-width: 260px;
+    }
+
+    .ndq-quote-com,
+    span {
+      font-weight: 600;
+    }
+
+    span.ndq-quote-change {
+      font-size: 17px;
+    }
+
+    .display-flex {
+      display: flex;
+    }
+    .graph_outer {
+      width: 100%;
+    }
+    .graph_outer {
+      padding-right: 30px;
+    }
+    .ticker-delay {
+      font-size: 9px;
+    }
+
+    /* Media qurey section */
+    @media screen and (max-width: 1500px) {
+      .title-stcker-banner {
+        width: 65%;
+        color: #fff;
+        font-size: 35px !important;
+      }
+      .graph-card-stockticker {
+        width: 35%;
+      }
+    }
+
+    @media screen and (max-width: 1200px) {
+      .title-stcker-banner {
+        width: 60%;
+        color: #fff;
+        font-size: 40px !important;
+      }
+      .graph-card-stockticker {
+        width: 40%;
+      }
+    }
+
+    @media screen and (max-width: 1024px) {
+      .home-stcker-section {
+        background-size: cover;
+        background-position: right right;
+        align-items: flex-start;
+      }
+
+      .title-stcker-banner {
+        text-align: left;
+        margin-bottom: 40px;
+        font-size: 30px !important;
+      }
+
+      .graph_outer {
+        padding-right: 5px;
+      }
+
+      .region-sticker {
+        justify-content: space-between;
+      }
+
+      #ndq-banner-quote {
+        padding-top: 40px;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .title-stcker-banner {
+        width: 100%;
+        font-size: 20px !important;
+      }
+
+      .graph-card-stockticker {
+        width: 100%;
+      }
+
+      .region-sticker {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .graph_outer img {
+        width: 100%;
+      }
+
+      .styledlogograph img {
+        max-width: 60px;
+      }
+
+      .display-flex {
+        display: block;
+        width: 100%;
+      }
+      .styledlogograph {
+        text-align: center;
+      }
+    }
+
+    @media screen and (max-width: 991px) and (min-width: 768px) {
+      .display-flex {
+        display: block;
+        width: 100%;
+      }
+      .styledlogograph {
+        text-align: center;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .styled-banner {
+        display: flex;
+        flex-direction: column !important;
+        justify-content: left;
+        align-items: center;
+      }
+      .display-flex {
+        display: block;
+        width: 100%;
+      }
+      .styledlogograph {
+        text-align: center;
+      }
+      .ndq-quote-comp {
+        margin-bottom: 10px;
+        font-size: 19px;
+      }
+      .stock-quote {
+        font-size: 13px;
+      }
+    }
+  </style>
+</html>
